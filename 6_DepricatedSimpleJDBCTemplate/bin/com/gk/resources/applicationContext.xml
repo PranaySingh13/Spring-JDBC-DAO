@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        https://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context 
+        https://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	
+	<bean id="employeeDao" class="com.gk.dao.EmployeeDaoImpl">
+		<property name="simpleJdbcTemplate" ref="simpleJdbcTemplate"/>
+	</bean>
+	
+	<!-- SimpleJdbcTemplate class is allowing DataSource object 
+	injection through Constructor Dependency Injection. -->
+	
+	<bean id="simpleJdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
+		<constructor-arg ref="dataSource"/>
+	</bean>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/springjdbcdaodb"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
+	</bean>
+</beans>
