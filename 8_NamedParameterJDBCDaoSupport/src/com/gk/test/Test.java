@@ -114,7 +114,7 @@ public class Test {
 					System.exit(0);
 					break;
 				default:
-					System.out.println("Enter the option from 1,2,3,4,5");
+					System.out.println("Enter the option from 1,2,3,4,5,6");
 					break;
 			}
 		}
