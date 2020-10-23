@@ -31,4 +31,9 @@ public class Employee {
 	public void setEmpAddress(String empAddress) {
 		this.empAddress = empAddress;
 	}
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + ", empSalary=" + empSalary + ", empAddress="
+				+ empAddress + "]";
+	}
 }
