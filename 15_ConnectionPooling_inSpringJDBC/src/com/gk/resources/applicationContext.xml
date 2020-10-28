@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="employeeDao" class="com.gk.dao.EmployeeDaoImpl">
+	<!-- <property name="dataSource" ref="dataSource1" /> -->
+		
+	<!-- <property name="dataSource" ref="dataSource2" /> -->
+	
+		<property name="dataSource" ref="dataSource3" />
+	
+	<!-- <property name="dataSource" ref="dataSource4" /> -->
+	</bean>
+	
+	<!-- Default Connection Pooling Mechanism -->
+	<!-- This is Not Suitable for production mode, it is suitable upto testing.-->
+	<bean id="dataSource1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/springjdbcdaodb"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
+	</bean>
+	
+	<!-- DBCP Connection Pooling Mechanism Properties -->
+	<bean id="dataSource2" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/springjdbcdaodb"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
+		<property name="initialSize" value="20" />
+		<property name="maxTotal" value="30" />
+	</bean>
+	
+	<!-- C3P0 Connection Pooling Mechanism Properties -->
+	<bean id="dataSource3" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/springjdbcdaodb"/>
+		<property name="user" value="root"/>
+		<property name="password" value="root"/>
+		<property name="maxPoolSize" value="30" />
+		<property name="minPoolSize" value="10" />
+		<property name="maxStatements" value="100" />
+		<property name="testConnectionOnCheckout" value="true" />
+	</bean>
+	
+	<!-- Proxool Connection Pooling Mechanism Properties -->
+	<bean id="dataSource4" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="driverUrl" value="jdbc:mysql://localhost:3306/springjdbcdaodb"/>
+		<property name="user" value="root"/>
+		<property name="password" value="root"/>
+		<property name="maximumConnectionCount" value="30" />
+		<property name="minimumConnectionCount" value="10" />
+	</bean>
+					
+</beans> 
